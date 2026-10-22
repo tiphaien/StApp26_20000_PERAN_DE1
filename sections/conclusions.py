@@ -9,7 +9,7 @@ def render(plv):
     nat_bact = taux(plv, "Bactériologie")
     nat_chim = taux(plv, "Chimie")
     pires = taux_par(plv, "dept", "Bactériologie").sort_values("taux", ascending=False).head(3)
-    m = taux_par(plv, "months", "Bactériologie")
+    m = taux_par(plv, "mois", "Bactériologie")
 
     st.subheader("Key takeaways")
     st.success(f"""
