@@ -46,7 +46,7 @@ c3.metric("Non-compliant : chemistry", f"{taux(donnees, 'Chimie'):.1f} %")
 
 
 # Check your town
-with st.expander("🔎 Check your town: how did your tap water do in 2024?"):
+with st.expander("Check your town: how did your tap water do in 2024?"):
     choix = st.selectbox("Type the name of your commune", liste_communes(plv),
                          index=None, placeholder="e.g. ANNECY (74)")
     if choix is None:
