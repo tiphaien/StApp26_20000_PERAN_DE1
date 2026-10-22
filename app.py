@@ -7,7 +7,7 @@ import streamlit as st
 
 from sections import conclusions, deep_dives, intro, overview, quality
 from utils.io import SOURCE, load_data, load_geojson
-from utils.prep import taux
+from utils.prep import INDICATEURS, taux
 
 st.set_page_config(page_title="Tap Water Quality in France", page_icon="💧", layout="wide")
 
