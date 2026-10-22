@@ -8,13 +8,13 @@ from utils.prep import MOIS, taux_par
 
 def render(donnees):
     morceaux = []
-    for indicateur in ["Bacteriologie", "Chemistry"]:
+    for indicateur in ["Bactériologie", "Chimie"]:
         t = taux_par(donnees, "mois", indicateur)[["mois", "taux"]]
         t["Type de contrôle"] = indicateur
         morceaux.append(t)
     graph = pd.concat(morceaux)
 
-    bact = graph[graph["Type de contrôle"] == "Bacteriologie"].set_index("mois")["taux"]
+    bact = graph[graph["Type de contrôle"] == "Bactériologie"].set_index("mois")["taux"]
     pire = bact.idxmax()
     st.subheader(f"The month most affected in bacteriology: {MOIS[pire - 1]} "
                  f"({bact[pire]:.1f} % of non-conforming samples)")
