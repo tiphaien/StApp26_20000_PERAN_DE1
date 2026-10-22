@@ -7,7 +7,6 @@ from utils.prep import MOIS, taux_par
 
 
 def render(donnees):
-    # Un tableau par type de contrôle, puis on les empile
     morceaux = []
     for indicateur in ["Bactériologie", "Chimie"]:
         t = taux_par(donnees, "mois", indicateur)[["mois", "taux"]]
@@ -17,10 +16,10 @@ def render(donnees):
 
     bact = graph[graph["Type de contrôle"] == "Bactériologie"].set_index("mois")["taux"]
     pire = bact.idxmax()
-    st.subheader(f"Le mois le plus touché en bactériologie : {MOIS[pire - 1]} "
-                 f"({bact[pire]:.1f} % de prélèvements non conformes)")
+    st.subheader(f"The month most affected in bacteriology: {MOIS[pire - 1]} "
+                 f"({bact[pire]:.1f} % of non-conforming samples)")
 
     st.plotly_chart(viz.courbe_mois(graph), use_container_width=True)
-    st.caption("Description : courbes du pourcentage de prélèvements non conformes chaque mois de 2024, "
-               "en bleu pour la bactériologie et en orange pour la chimie. "
-               "Survolez un point pour voir la valeur exacte.")
+    st.caption("Description : curves of the percentage of non-conforming samples each month of 2024, "
+               "in blue for bacteriology and in orange for chemistry. "
+               "Hover over a point to see the exact value.")

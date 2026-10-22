@@ -11,21 +11,22 @@ def render(plv):
     pires = taux_par(plv, "dept", "Bactériologie").sort_values("taux", ascending=False).head(3)
     m = taux_par(plv, "mois", "Bactériologie")
 
-    st.subheader("Ce qu'il faut retenir")
+    st.subheader("Key takeaways")
     st.success(f"""
-    1. **L'eau du robinet est très majoritairement conforme** : {nat_bact:.1f} % de prélèvements non
-       conformes en bactériologie et {nat_chim:.1f} % en chimie sur l'année 2024.
-    2. **Les problèmes bactériologiques sont très concentrés** : les départements les plus touchés
-       ({", ".join(pires["dept"])}) atteignent jusqu'à {pires["taux"].max():.0f} % — surtout des territoires
-       de montagne et ruraux.
-    3. **Il y a un effet saison** : de {m["taux"].min():.1f} % au mois le plus calme à {m["taux"].max():.1f} %
-       au mois le plus touché (octobre), un pic qui coïncide avec les inondations de l'épisode cévenol.
+    1. **Tap water is mostly compliant**: {nat_bact:.1f}% of samples were non-compliant
+       for bacteriology and {nat_chim:.1f}% for chemistry in 2024.
+    2. **Bacteriological problems are highly concentrated**: the most affected departments
+       ({", ".join(pires["dept"])}) reach up to {pires["taux"].max():.0f}% — particularly mountainous
+       and rural areas.
+    3. **There is a seasonal effect**: rates range from {m["taux"].min():.1f}% in the calmest month to
+       {m["taux"].max():.1f}% in the most affected month (October), a peak that coincides with flooding
+       during the Cévenol storm episode.
     """)
 
-    st.subheader("Implications et prochaines étapes")
+    st.subheader("Implications and next steps")
     st.markdown("""
-    - **Agir en priorité** sur les petits réseaux des zones de montagne, où les non-conformités se concentrent.
-    - **Renforcer la surveillance** après les épisodes de fortes pluies.
-    - **Pour aller plus loin** : ajouter plusieurs années (2020-2024) pour distinguer un accident ponctuel
-      d'une tendance, et croiser avec la taille des réseaux pour tester l'hypothèse des petits réseaux.
+      - **Prioritize action** on small water systems in mountainous areas, where non-compliance is concentrated.
+      - **Strengthen monitoring** after periods of heavy rainfall.
+      - **Next steps**: add several years of data (2020–2024) to distinguish an isolated event
+         from a trend, and compare results with system size to test the small-system hypothesis.
     """)
