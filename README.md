@@ -5,9 +5,9 @@ Projet individuel Streamlit — EFREI Paris, Data Analysis & Visualization — [
 Application de data storytelling sur la qualité de l'eau du robinet en France en 2024, à partir des
 résultats officiels du contrôle sanitaire.
 
-**Application en ligne :** [lien Streamlit Cloud, à ajouter après le déploiement]
+**Application en ligne :** https://qualite-eau-robinet-de1.streamlit.app/
 **Vidéo de démonstration :** [lien, à ajouter]
-
+git add README.md
 ## Données
 
 | | |
