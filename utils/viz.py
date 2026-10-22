@@ -15,6 +15,9 @@ def courbe_mois(graph):
     fig.update_traces(hovertemplate="%{y:.2f} %")
     fig.update_xaxes(tickvals=list(range(1, 13)), ticktext=MOIS_COURTS)
     fig.update_yaxes(rangemode="tozero", ticksuffix=" %")
+    fig.add_vrect(x0=9.6, x1=10.4, fillcolor=ORANGE, opacity=0.12, line_width=0,
+                  annotation_text="Cévennes floods (mid-October)",
+                  annotation_position="top left")
     return fig
 
 
