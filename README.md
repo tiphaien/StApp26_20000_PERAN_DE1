@@ -1,99 +1,98 @@
-# 💧 L'eau du robinet est-elle sûre partout en France ?
+# Is tap water safe everywhere in France?
 
-Projet individuel Streamlit — EFREI Paris, Data Analysis & Visualization — [Prénom NOM], [groupe DE1]
+Individual Streamlit project — EFREI Paris, Data Analysis & Visualization — Tiphaine PERAN, group DE1
 
-Application de data storytelling sur la qualité de l'eau du robinet en France en 2024, à partir des
-résultats officiels du contrôle sanitaire.
+A data storytelling app on the quality of tap water in France in 2024, based on the official
+results of the public health monitoring programme.
 
-**Application en ligne :** https://qualite-eau-robinet-de1.streamlit.app/
-**Vidéo de démonstration :** [lien, à ajouter]
+**Live app:** https://qualite-eau-robinet-de1.streamlit.app/
+**Demo video:** [link, to be added]
 
-## Données
+## Data
 
 | | |
 |---|---|
-| **Jeu de données** | Résultats du contrôle sanitaire de l'eau du robinet |
-| **Producteur** | Ministère de la Santé (Agences régionales de santé) |
-| **Lien** | https://www.data.gouv.fr/datasets/resultats-du-controle-sanitaire-de-leau-du-robinet |
+| **Dataset** | Résultats du contrôle sanitaire de l'eau du robinet (tap water health monitoring results) |
+| **Producer** | French Ministry of Health (Regional Health Agencies, ARS) |
+| **Link** | https://www.data.gouv.fr/datasets/resultats-du-controle-sanitaire-de-leau-du-robinet |
 | **Licence** | Licence Ouverte / Open Licence |
-| **Année utilisée** | 2024 |
-| **Fichier utilisé** | `UDI_PLV_2024.txt` : 246 631 prélèvements, 101 départements |
+| **Year used** | 2024 |
+| **File used** | `UDI_PLV_2024.txt`: 246,631 samples, 101 départements |
 
-### Pourquoi ce fichier parmi les 6 fournis
+### Why this file out of the 6 provided
 
-Le zip contient 3 points de contrôle × 2 types de fichiers :
-- `CAP` = eau brute au captage, `TTP` = eau en sortie d'usine de traitement,
-  `UDI` = eau dans le réseau de distribution, **celle qui arrive au robinet** ;
-- `PLV` = un prélèvement par ligne avec le **verdict de conformité**,
-  `RES` = le détail de chaque substance analysée.
+The zip contains 3 monitoring points × 2 file types:
+- `CAP` = raw water at the source, `TTP` = water leaving the treatment plant,
+  `UDI` = water in the distribution network, **the water that reaches the tap**;
+- `PLV` = one sample per row, with the **compliance verdict**,
+  `RES` = the detailed result for each substance analysed.
 
-Le sujet étant l'eau du robinet, seul `UDI_PLV` est utilisé : il contient directement le verdict
-« conforme / non conforme » fixé par les autorités sanitaires.
+Since the topic is tap water, only `UDI_PLV` is used: it directly contains the
+"compliant / non-compliant" verdict set by the health authorities.
 
-## Le récit
+## The story
 
-**Public :** habitants, élus locaux, services des eaux.
+**Audience:** residents, local elected officials, water utilities.
 
-**Questions :**
-1. Les problèmes de qualité varient-ils au fil de l'année ?
-2. Certains départements sont-ils plus touchés que d'autres ?
-3. Peut-on faire confiance à ces chiffres ?
+**Questions:**
+1. Do water quality problems vary over the year?
+2. Are some départements more affected than others?
+3. Can these figures be trusted?
 
-**Principaux constats :**
-- L'eau est très majoritairement conforme : [1,8] % de non-conformités en bactériologie, [2,4] % en chimie.
-- Les problèmes bactériologiques se concentrent dans les départements de montagne et ruraux
-  (Lozère : [14,3] %, Corse, Hautes-Alpes…).
-- Un pic marqué en octobre, qui coïncide avec les inondations de l'épisode cévenol
-  (Ardèche + Lozère : [24,4] % de non-conformités ce mois-là).
+**Key findings:**
+- Water is overwhelmingly compliant : 1.8% of samples are non-compliant for bacteriology, 2.4% for chemistry.
+- Bacteriological problems are concentrated in mountainous and rural départements.   
+- A sharp peak in October, coinciding with the floods of the Cévennes rain episode (*épisode cévenol*)
+  (Ardèche + Lozère: 24.4% of samples non-compliant that month).
 
-## Méthode
+## Method
 
-- **Nettoyage** (`utils/prep.py`) : 5 colonnes conservées sur 41, codes lus comme du texte
-  (zéros initiaux, Corse 2A/2B), codes département convertis de 3 à 2 caractères.
-- **Indicateur** : taux de non-conformité = prélèvements non conformes ÷ prélèvements évalués.
-  Les codes `S` (sans objet, analyse non réalisée) sont exclus du calcul.
-- **Qualité des données** : valeurs manquantes, doublons et contrôles de validation affichés
-  dans l'onglet 4 de l'application.
+- **Cleaning** (`utils/prep.py`) : 5 of 41 columns kept, codes read as text
+  (leading zeros, Corsica 2A/2B), département codes converted from 3 to 2 characters.
+- **Indicator** : non-compliance rate = non-compliant samples ÷ assessed samples.
+  `S` codes (not applicable, analysis not performed) are excluded from the calculation.
+- **Data quality** : missing values, duplicates and validation checks are shown
+  in tab 4 of the app.
 
-## Lancer le projet
+## Running the project
 
 ```bash
 pip install -r requirements.txt
 streamlit run app.py
 ```
 
-Les données préparées (`data/processed/prelevements_2024.parquet`) sont incluses.
-Pour les régénérer depuis le fichier brut :
-1. Télécharger le zip 2024 sur la page data.gouv.fr ci-dessus.
-2. Le dézipper dans `data/eaurob-2024/`.
-3. Lancer `python scripts/build_data.py`.
+The prepared data (`data/processed/prelevements_2024.parquet`) is included.
+To regenerate it from the raw file:
+1. Download the 2024 zip from the data.gouv.fr page above.
+2. Unzip it into `data/eaurob-2024/`.
+3. Run `python scripts/build_data.py`.
 
 ## Structure
 
 ```
-app.py                  # page principale : filtres, KPI, onglets
-sections/               # un fichier par onglet (intro, overview, deep_dives, quality, conclusions)
-utils/io.py             # chargement des données (mis en cache)
-utils/prep.py           # nettoyage et calcul des taux
-utils/viz.py            # fonctions graphiques
-scripts/build_data.py   # préparation des données depuis le fichier brut
-data/processed/         # données préparées
-assets/                 # contours des départements (GeoJSON)
-explore_dataset.ipynb   # exploration initiale des données
+app.py                  # main page: filters, KPIs, tabs
+sections/               # one file per tab (intro, overview, deep_dives, quality, conclusions)
+utils/io.py             # data loading (cached)
+utils/prep.py           # cleaning and rate calculations
+utils/viz.py            # chart functions
+scripts/build_data.py   # data preparation from the raw file
+data/processed/         # prepared data
+assets/                 # département boundaries (GeoJSON)
+explore_dataset.ipynb   # initial data exploration
 ```
 
-## Limites
+## Limitations
 
-- Une seule année : variations saisonnières visibles, pas de tendance de long terme.
-- Un prélèvement non conforme est un constat ponctuel, pas une eau dangereuse pour toute la commune.
-- Les départements ne sont pas contrôlés au même rythme.
-- Les explications avancées (relief, petits réseaux, pluies) sont des hypothèses : les données
-  montrent des coïncidences, pas des causes.
-- Coordonnées GPS du fichier inutilisables (projections mélangées) : carte par département.
-- La carte couvre la métropole ; l'outre-mer apparaît dans le classement.
+- A single year: seasonal variations are visible, but not long-term trends.
+- A non-compliant sample is a one-off finding, not proof that the whole municipality drank unsafe water.
+- Départements are not monitored at the same frequency.
+- The explanations put forward (terrain, small networks, rainfall) are hypotheses: the data
+  shows coincidences, not causes.
+- The GPS coordinates in the file are unusable (mixed projections): the map is by département.
+- The map covers mainland France; overseas départements appear in the ranking.
 
 ## Sources
 
-- Données : https://www.data.gouv.fr/datasets/resultats-du-controle-sanitaire-de-leau-du-robinet
-- Contours des départements : https://github.com/gregoiredavid/france-geojson
-- Contexte météo d'octobre 2024 : Météo-France, bilan climatique de l'automne 2024
+- Data: https://www.data.gouv.fr/datasets/resultats-du-controle-sanitaire-de-leau-du-robinet
+- Département boundaries: https://github.com/gregoiredavid/france-geojson
+- October 2024 weather context: Météo-France, autumn 2024 climate report

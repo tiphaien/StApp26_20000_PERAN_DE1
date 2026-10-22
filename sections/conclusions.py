@@ -6,10 +6,10 @@ from utils.prep import taux, taux_par
 
 
 def render(plv):
-    nat_bact = taux(plv, "Bactériologie")
+    nat_bact = taux(plv, "Bacteriologie")
     nat_chim = taux(plv, "Chimie")
-    pires = taux_par(plv, "dept", "Bactériologie").sort_values("taux", ascending=False).head(3)
-    m = taux_par(plv, "mois", "Bactériologie")
+    pires = taux_par(plv, "dept", "Bacteriologie").sort_values("taux", ascending=False).head(3)
+    m = taux_par(plv, "months", "Bacteriologie")
 
     st.subheader("Key takeaways")
     st.success(f"""
