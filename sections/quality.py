@@ -4,7 +4,7 @@ import streamlit as st
 
 
 def render(plv):
-    st.header("Qualité des données et limites")
+    st.header("Data Quality and Limitations")
 
     # 1. key numbers
     nb_doublons = plv.duplicated().sum()
