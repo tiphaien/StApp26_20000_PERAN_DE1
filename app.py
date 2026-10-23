@@ -70,8 +70,8 @@ with st.sidebar:
 # KPI
 c1, c2, c3 = st.columns(3)
 c1.metric("Samples analyzed", f"{len(donnees):,}".replace(",", " "))
-c2.metric("Non-compliant : bacteriology", f"{taux(donnees, 'Bactériologie'):.1f} %")
-c3.metric("Non-compliant : chemistry", f"{taux(donnees, 'Chimie'):.1f} %")
+c2.metric("Non-compliant : bacteriology", f"{taux(donnees, 'Bacteriology'):.1f} %")
+c3.metric("Non-compliant : chemistry", f"{taux(donnees, 'Chemistry'):.1f} %")
 
 
 # Check your town

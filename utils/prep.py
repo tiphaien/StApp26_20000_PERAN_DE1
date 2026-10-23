@@ -5,8 +5,8 @@ import pandas as pd
 COLONNES = ["dateprel", "cddept", "nomcommune", "plvconformitebacterio", "plvconformitechimique"]
 
 INDICATEURS = {
-    "Bactériologie": ("bacterio_nc", "bacterio_evalue"),
-    "Chimie": ("chimique_nc", "chimique_evalue"),
+    "Bacteriology": ("bacterio_nc", "bacterio_evalue"),
+    "Chemistry": ("chimique_nc", "chimique_evalue"),
 }
 
 MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet",

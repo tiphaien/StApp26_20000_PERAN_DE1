@@ -6,7 +6,7 @@ from utils import viz
 from utils.prep import INDICATEURS, MOIS, taux_par
 
 # English labels shown in the legend (the keys stay as in INDICATEURS)
-LIBELLES = {"Bactériologie": "Bacteriology", "Chimie": "Chemistry"}
+LIBELLES = {"Bacteriology": "Bacteriology", "Chemistry": "Chemistry"}
 
 
 def render(donnees):
