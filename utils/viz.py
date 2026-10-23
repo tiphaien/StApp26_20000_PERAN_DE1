@@ -1,6 +1,5 @@
 # chart functions to enforce consistent style
 
-"""Fonctions graphiques : même style pour toute l'app."""
 import plotly.express as px
 
 BLEU, ORANGE = "#2a78d6", "#eb6834"
@@ -9,8 +8,8 @@ MOIS_COURTS = ["janv", "févr", "mars", "avr", "mai", "juin",
 
 
 def courbe_mois(graph):
-    fig = px.line(graph, x="mois", y="taux", color="Type de contrôle", markers=True,
-                  labels={"mois": "Mois de l'année 2024", "taux": "Prélèvements non conformes (%)"},
+    fig = px.line(graph, x="mois", y="taux", color="Type of control", markers=True,
+                  labels={"mois": "Months of 2024", "taux": "Non-compliant samples (%)"},
                   color_discrete_sequence=[BLEU, ORANGE])
     fig.update_traces(hovertemplate="%{y:.2f} %")
     fig.update_xaxes(tickvals=list(range(1, 13)), ticktext=MOIS_COURTS)
@@ -25,7 +24,7 @@ def carte(par_dept, geojson, col_eval):
     fig = px.choropleth(par_dept, geojson=geojson, locations="dept", featureidkey="properties.code",
                         color="taux", color_continuous_scale="Blues", hover_name="dept",
                         hover_data={"dept": False, "taux": ":.1f", col_eval: True},
-                        labels={"taux": "Non conformes (%)", col_eval: "Prélèvements évalués"})
+                        labels={"taux": "Non-compliant samples (%)", col_eval: "Evaluated samples"})
     fig.update_geos(fitbounds="locations", visible=False)
     fig.update_layout(height=600, margin=dict(l=0, r=0, t=0, b=0))
     return fig
@@ -33,7 +32,7 @@ def carte(par_dept, geojson, col_eval):
 
 def classement(top, taux_national, col_nc, col_eval):
     fig = px.bar(top, x="taux", y="dept", orientation="h",
-                 labels={"taux": "Prélèvements non conformes (%)", "dept": "Département"},
+                 labels={"taux": "Non-compliant samples (%)", "dept": "Département"},
                  hover_data={col_eval: True, col_nc: True, "taux": ":.1f"},
                  color_discrete_sequence=[BLEU])
     fig.update_yaxes(categoryorder="total ascending", type="category")

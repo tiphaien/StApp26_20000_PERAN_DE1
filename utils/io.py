@@ -12,8 +12,8 @@ FICHIER_DONNEES = RACINE / "data" / "processed" / "prelevements_2024.parquet"
 FICHIER_CARTE = RACINE / "assets" / "departements.geojson"
 
 URL_JEU = "https://www.data.gouv.fr/datasets/resultats-du-controle-sanitaire-de-leau-du-robinet"
-SOURCE = ("Source : Résultats du contrôle sanitaire de l'eau du robinet, 2024 — "
-          "Ministère de la Santé — data.gouv.fr — Licence Ouverte")
+SOURCE = ("Source : Results of the sanitary control of tap water, 2024 — "
+          "Ministry of Health — data.gouv.fr — Open Licence")
 
 
 @st.cache_data
