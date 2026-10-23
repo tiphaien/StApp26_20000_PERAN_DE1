@@ -5,6 +5,7 @@ Run: streamlit run app.py
 import plotly.express as px
 import streamlit as st
 
+from pathlib import Path
 from sections import conclusions, deep_dives, intro, overview, quality
 from utils.io import SOURCE, load_data, load_geojson
 from utils.prep import INDICATEURS, taux
@@ -30,6 +31,7 @@ with st.sidebar:
     depts = st.multiselect("Departments (blank = the whole of France)", sorted(plv["dept"].unique()))
     mois = st.slider("Month", 1, 12, (1, 12))
 
+
 donnees = plv[plv["mois"].between(mois[0], mois[1])]
 if depts:
     donnees = donnees[donnees["dept"].isin(depts)]
@@ -37,6 +39,33 @@ if depts:
 if donnees.empty:
     st.error("No samples match the filters.")
     st.stop()
+
+
+# Author & course info
+LOGO = Path(__file__).parent / "assets" / "efrei_logo.png"
+
+with st.sidebar:
+    st.divider()
+    if LOGO.exists():
+        st.image(str(LOGO), width=160)
+
+    st.markdown("""
+**Tiphaine PERAN**
+[Data Engineering Program] · [i2] · Group DE1
+
+📧 [tiphaine.peran@efrei.net](mailto:tiphaine.peran@efrei.net)
+🔗 [LinkedIn](https://www.linkedin.com/in/tiphaine-peran/)
+💻 [GitHub](https://github.com/tiphaien)
+
+---
+
+**Course:** Data Analysis & Visualization
+**Project proposed by:** Prof. Mano Joseph Mathew
+[mano.mathew@efrei.fr](mailto:mano.mathew@efrei.fr)
+""")
+
+
+
 
 # KPI
 c1, c2, c3 = st.columns(3)
