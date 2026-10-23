@@ -6,7 +6,7 @@ A data storytelling app on the quality of tap water in France in 2024, based on 
 results of the public health monitoring programme.
 
 **Live app:** https://qualite-eau-robinet-de1.streamlit.app/
-**Demo video:** [link, to be added]
+**Demo video:** https://efrei365net-my.sharepoint.com/:v:/g/personal/tiphaine_peran_efrei_net/IQAEbv79KaScS7TAgtLwfqt2AacNp06NOkqrquUrSMyrr4o?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=lzYakR
 
 ## Data
 
